@@ -161,6 +161,9 @@ function validateChatInput(body) {
  * Body: { message: string, session_id: string, mood?: string }
  * Returns: { reply: string, session_id: string }
  * ─────────────────────────────────────────────────────────────────────── */
+app.get("/", (req, res) => {
+  res.send("Server is working 🚀");
+});
 app.post('/chat', chatLimiter, async (req, res) => {
   try {
     const validationError = validateChatInput(req.body);
