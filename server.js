@@ -163,6 +163,8 @@ function validateChatInput(body) {
  * ─────────────────────────────────────────────────────────────────────── */
 app.get("/", (req, res) => {
   res.send("Server is working 🚀");
+});app.get("/chat", (req, res) => {
+  res.json({ message: "Chat route is working 🚀" });
 });
 app.post('/chat', chatLimiter, async (req, res) => {
   try {
@@ -248,8 +250,12 @@ app.use((err, _req, res, _next) => {
   console.error('[unhandled error]', err.message);
   res.status(500).json({ error: 'Internal server error' });
 });
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log(`✅ Echra backend running on http://localhost:${PORT}`);
-  console.log(`   API key loaded: ${process.env.ANTHROPIC_API_KEY ? 'YES' : 'NO'}`);
+  console.log(`Echra backend running on http://localhost:${PORT}`);
+  console.log(
+    `API key loaded: ${process.env.ANTHROPIC_API_KEY ? "YES" : "NO"}`
+  );
 });
+
